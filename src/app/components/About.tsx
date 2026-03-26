@@ -37,20 +37,20 @@ export function About() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {highlights.map((item, index) => (
-            <div
+            <li
               key={index}
               className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300"
             >
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4" aria-hidden="true">
                 <item.icon className="w-6 h-6 text-blue-600" />
               </div>
               <h3 className="text-xl mb-3">{item.title}</h3>
               <p className="text-gray-600">{item.description}</p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

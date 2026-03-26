@@ -37,22 +37,25 @@ export function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             className="p-3 bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 backdrop-blur-sm"
+            aria-label="Meu perfil no GitHub"
           >
-            <Github className="w-6 h-6 text-white" />
+            <Github className="w-6 h-6 text-white" aria-hidden="true" />
           </a>
           <a
             href="https://www.linkedin.com/in/petersilvahs/"
             target="_blank"
             rel="noopener noreferrer"
             className="p-3 bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 backdrop-blur-sm"
+            aria-label="Meu perfil no LinkedIn"
           >
-            <Linkedin className="w-6 h-6 text-white" />
+            <Linkedin className="w-6 h-6 text-white" aria-hidden="true" />
           </a>
           <a
             href="mailto:petersilvahs@gmail.com"
             className="p-3 bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 backdrop-blur-sm"
+            aria-label="Enviar um e-mail"
           >
-            <Mail className="w-6 h-6 text-white" />
+            <Mail className="w-6 h-6 text-white" aria-hidden="true" />
           </a>
         </div>
 
@@ -60,14 +63,15 @@ export function Hero() {
         <button
           onClick={scrollToContact}
           className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
+          aria-label="Ir para a seção de contato"
         >
           Iniciar um Projeto
-          <ArrowDown className="w-5 h-5" />
+          <ArrowDown className="w-5 h-5" aria-hidden="true" />
         </button>
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce" aria-hidden="true">
         <ArrowDown className="w-6 h-6 text-white/60" />
       </div>
     </section>
