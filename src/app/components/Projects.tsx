@@ -3,6 +3,7 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 import HyperaLogo from "@/app/images/logo-hypera.svg";
 import AnblickLogo from "@/app/images/logo-anblick.png";
 import StoneLogo from "@/app/images/logo-stone.svg";
+import StudioCaisLogo from "@/app/images/cais-na-lateral.svg";
 
 export function Projects() {
   const projects = [
@@ -13,6 +14,7 @@ Reestruturação de aplicações em PHP para Astro.build, maximizando SEO e perf
 Gestão automatizada (Docker, Argo CD) e otimização de conteúdo via Cloudflare e Calibre.`,
       image: HyperaLogo,
       containImage: true,
+      imagePadding: "p-8",
       tags: ["Astro", "Docker", "Argo CD", "Nginx", "Cloudflare", "PHP", "Azure"],
       metrics: [
         { label: "Performance", value: "Alta Disp." },
@@ -32,6 +34,7 @@ Colaboração multidisciplinar focada em dados, operando com sólidas práticas 
       image: AnblickLogo,
       containImage: true,
       imageBg: "bg-gray-300",
+      imagePadding: "p-8",
       tags: ["AWS", "Microsserviços", "IaC", "Arquitetura Cloud", "APIs", "Google Analytics 4", "Google Tag Manager", "Microsoft Clarity"],
       metrics: [
         { label: "Infraestrutura", value: "AWS Cloud" },
@@ -50,6 +53,7 @@ Trabalhos com APIs escaláveis em ambientes distribuídos e pipelines de deploy 
 Colaboração com times multidisciplinares seguindo metodologias ágeis e cultura de squads.`,
       image: StoneLogo,
       containImage: true,
+      imagePadding: "p-10",
       tags: ["React", "Next.js", "TypeScript", "CI/CD", "Testes A/B", "Amplitude", "Styled Components", "Tailwind CSS", "APIs REST", "Hotjar / Microsoft Clarity"],
       metrics: [
         { label: "Disponibilidade", value: "Alta" },
@@ -58,6 +62,24 @@ Colaboração com times multidisciplinares seguindo metodologias ágeis e cultur
       ],
       links: [
         { label: "Stone", url: "https://www.stone.com.br/", primary: true, icon: "external" },
+      ],
+    },
+    {
+      title: "Studio Cais",
+      description: `Dev, Design UX & SEO.
+Desenvolvemos o futuro da sua marca.
+Unimos performance de código, interfaces que encantam e visibilidade estratégica para navegar no oceano digital.`,
+      image: StudioCaisLogo,
+      containImage: true,
+      imagePadding: "p-1",
+      tags: ["React", "Next.js", "TypeScript", "UX Design", "SEO", "Performance"],
+      metrics: [
+        { label: "Design", value: "Premium" },
+        { label: "SEO", value: "Otimizado" },
+        { label: "Code", value: "High Perf" },
+      ],
+      links: [
+        { label: "Site Oficial", url: "https://agenciastudiocais.com.br/", primary: true, icon: "external" },
       ],
     },
   ];
@@ -73,18 +95,18 @@ Colaboração com times multidisciplinares seguindo metodologias ágeis e cultur
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {projects.map((project, index) => (
             <div
               key={index}
               className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col"
             >
               {/* Project Image */}
-              <div className="relative h-64 overflow-hidden shrink-0">
+              <div className="relative h-48 overflow-hidden shrink-0">
                 <ImageWithFallback
                   src={project.image}
                   alt={project.title}
-                  className={`w-full h-full group-hover:scale-110 transition-transform duration-500 ${project.containImage ? `object-contain p-10 ${project.imageBg || 'bg-white'}` : 'object-cover'}`}
+                  className={`w-full h-full group-hover:scale-110 transition-transform duration-500 ${project.containImage ? `object-contain ${project.imagePadding || 'p-8'} ${project.imageBg || 'bg-white'}` : 'object-cover'}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
@@ -127,7 +149,7 @@ Colaboração com times multidisciplinares seguindo metodologias ágeis e cultur
                 </div>
 
                 {/* Links */}
-                <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-100">
+                <div className="flex flex-col md:flex-row gap-3 pt-4 border-t border-gray-100">
                   {project.links.map((link, linkIndex) => (
                     <a
                       key={linkIndex}
