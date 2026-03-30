@@ -29,21 +29,23 @@ export function Contact() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/f2a241cf051ffe8f59621ba6948892b9", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
         body: JSON.stringify({
+          access_key: "e8873652-1380-41f5-94c6-cbdf8f535792",
           ...formData,
-          "_subject": "Novo contato do Portfolio",
-          "_captcha": "false",
-          "_template": "table"
+          subject: "Novo contato do Portfolio",
+          from_name: formData.name,
         }),
       });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (result.success) {
         setIsSubmitted(true);
         toast.success("Mensagem enviada com sucesso! Retornarei em breve.");
 
@@ -63,7 +65,7 @@ export function Contact() {
         toast.error("Ocorreu um erro ao enviar a mensagem. Tente novamente.");
       }
     } catch (error) {
-      toast.error("Erro de conexão. Verifique sua internet.");
+      toast.error("Erro ao enviar. Verifique sua conexão.");
     } finally {
       setIsSubmitting(false);
     }
