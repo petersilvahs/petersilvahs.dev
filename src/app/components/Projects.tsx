@@ -1,9 +1,15 @@
 import { ExternalLink, Github } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import HyperaLogo from "@/app/images/logo-hypera.svg";
-import AnblickLogo from "@/app/images/logo-anblick.png";
 import StoneLogo from "@/app/images/logo-stone.svg";
+import AnblickLogo from "@/app/images/logo-anblick.png";
+import HyperaLogo from "@/app/images/logo-hypera.svg";
 import StudioCaisLogo from "@/app/images/cais-na-lateral.svg";
+
+// Screenshots Reais das Plataformas
+import StonePlatform from "@/app/images/plataforma-stone.png";
+import AnblickPlatform from "@/app/images/plataforma-anblick.png";
+import HyperaPlatform from "@/app/images/plataforma-hypera.png";
+import StudioCaisPlatform from "@/app/images/plataforma-cais.png";
 
 export function Projects() {
   const projects = [
@@ -84,9 +90,88 @@ Unimos performance de código, interfaces que encantam e visibilidade estratégi
     },
   ];
 
+  const platforms = [
+    {
+      title: "Stone Co.",
+      domain: "stone.com.br",
+      logo: StoneLogo,
+      screenshot: StonePlatform,
+      url: "https://www.stone.com.br/",
+    },
+    {
+      title: "Studio Cais",
+      domain: "agenciastudiocais.com.br",
+      logo: StudioCaisLogo,
+      screenshot: StudioCaisPlatform,
+      url: "https://agenciastudiocais.com.br/",
+    },
+    {
+      title: "Anblick Engenharia",
+      domain: "anblickengenharia.com.br",
+      logo: AnblickLogo,
+      screenshot: AnblickPlatform,
+      url: "https://www.anblickengenharia.com.br/",
+    },
+    {
+      title: "Hypera Pharma",
+      domain: "hypera.com.br",
+      logo: HyperaLogo,
+      screenshot: HyperaPlatform,
+      url: "https://www.hypera.com.br/",
+    },
+  ];
+
   return (
     <section id="projects" className="py-20 md:py-32 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6">
+        {/* Plataformas Desenvolvidas Section */}
+        <div className="mb-32">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl mb-6">Plataformas Desenvolvidas</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Interfaces de alta performance e ecossistemas digitais construídos para liderar mercados.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16">
+            {platforms.map((platform, idx) => (
+              <div key={idx} className="group">
+                {/* Screenshot with Border */}
+                <div className="rounded-[2.5rem] border-[8px] sm:border-[16px] border-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden aspect-video relative group-hover:shadow-[0_40px_80px_rgba(0,0,0,0.15)] transition-all duration-500">
+                  <ImageWithFallback
+                    src={platform.screenshot}
+                    alt={platform.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 border border-gray-100 rounded-[1.8rem] pointer-events-none"></div>
+                </div>
+
+                {/* Info below */}
+                <div className="mt-8 flex items-center justify-between px-2 sm:px-6">
+                  <div className="flex items-center gap-4 sm:gap-6">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-white shadow-sm flex items-center justify-center p-2 sm:p-3 border border-gray-100 group-hover:border-blue-200 transition-colors">
+                      <img src={platform.logo} className="w-full h-full object-contain" alt={`${platform.title} logo`} />
+                    </div>
+                    <div>
+                      <h4 className="text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">{platform.title}</h4>
+                      <p className="text-gray-400 text-xs sm:text-sm font-medium tracking-wider uppercase mt-0.5">{platform.domain}</p>
+                    </div>
+                  </div>
+                  <a
+                    href={platform.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 sm:w-14 sm:h-14 flex items-center justify-center bg-gray-50 rounded-full hover:bg-blue-600 text-gray-400 hover:text-white transition-all duration-300 shadow-sm"
+                  >
+                    <ExternalLink className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Projetos em Destaque Section */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl mb-6">Projetos em Destaque</h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -95,76 +180,85 @@ Unimos performance de código, interfaces que encantam e visibilidade estratégi
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
           {projects.map((project, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col"
+              className="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col border border-gray-100"
             >
-              {/* Project Image */}
-              <div className="relative h-48 overflow-hidden shrink-0">
+              {/* Image Header - More compact */}
+              <div className="relative h-48 sm:h-56 overflow-hidden shrink-0">
                 <ImageWithFallback
                   src={project.image}
                   alt={project.title}
-                  className={`w-full h-full group-hover:scale-110 transition-transform duration-500 ${project.containImage ? `object-contain ${project.imagePadding || 'p-8'} ${project.imageBg || 'bg-white'}` : 'object-cover'}`}
+                  className={`w-full h-full group-hover:scale-105 transition-transform duration-500 ${project.containImage ? `object-contain ${project.imagePadding || 'p-8'} ${project.imageBg || 'bg-white'}` : 'object-cover'}`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
-
-              {/* Project Content */}
-              <div className="p-6 flex flex-col flex-1 space-y-4">
-                <h3 className="text-2xl font-bold">{project.title}</h3>
-
-                {/* Description Rendering */}
-                <ul className="text-gray-600 space-y-2 text-sm flex-1">
-                  {project.description.split('\n').map((line, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      {project.description.includes('\n') && <span className="text-blue-500 mt-0.5">•</span>}
-                      <span>{line.replace(/^• /, '')}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 pt-2">
-                  <p className="w-full text-xs font-semibold text-gray-400 uppercase tracking-widest mb-1">Stacks & Tecnologias</p>
-                  {project.tags.map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-medium rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Metrics */}
-                <div className="grid grid-cols-3 gap-2 pt-4 border-t border-gray-100 mt-auto">
-                  {project.metrics.map((metric, metricIndex) => (
-                    <div key={metricIndex} className="text-center">
-                      <div className="text-blue-600 font-semibold text-sm">{metric.value}</div>
-                      <div className="text-[10px] text-gray-500 mt-1 uppercase tracking-wide">{metric.label}</div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Links */}
-                <div className="flex flex-col md:flex-row gap-3 pt-4 border-t border-gray-100">
+                <div className="absolute top-4 right-4 flex gap-2">
                   {project.links.map((link, linkIndex) => (
                     <a
                       key={linkIndex}
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-300 ${link.primary !== false
-                        ? "bg-blue-600 text-white hover:bg-blue-700"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                        }`}
+                      className="w-9 h-9 flex items-center justify-center bg-white/90 backdrop-blur-sm rounded-full shadow-lg text-gray-600 hover:bg-blue-600 hover:text-white transition-all"
+                      title={link.label}
                     >
                       {link.icon === "github" ? <Github className="w-4 h-4" /> : <ExternalLink className="w-4 h-4" />}
-                      {link.label}
                     </a>
                   ))}
+                </div>
+              </div>
+
+              {/* Project Content - Optimized and Data-Dense */}
+              <div className="p-6 sm:p-8 flex flex-col flex-1">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900">{project.title}</h3>
+                  <div className="h-0.5 w-12 bg-blue-200 rounded-full"></div>
+                </div>
+
+                {/* Stacks focused - immediate visibility */}
+                <div className="flex flex-wrap gap-1.5 mb-6">
+                  {project.tags.slice(0, 5).map((tag, tagIndex) => (
+                    <span
+                      key={tagIndex}
+                      className="px-2 py-1 bg-gray-50 text-gray-500 text-[10px] font-bold uppercase tracking-tight rounded border border-gray-100"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                  {project.tags.length > 5 && (
+                    <span className="text-[10px] text-blue-500 font-bold ml-1 self-center">
+                      +{project.tags.length - 5}
+                    </span>
+                  )}
+                </div>
+
+                {/* Description - Concise and breathable */}
+                <div className="flex-1 mb-8">
+                  <ul className="text-gray-500 space-y-2.5 text-sm leading-relaxed">
+                    {project.description.split('\n').filter(line => line.trim()).map((line, i) => (
+                      <li key={i} className="flex items-start gap-2.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-blue-500/20 border border-blue-500/40 mt-1.5 shrink-0"></span>
+                        <span className="line-clamp-2">{line.replace(/^• /, '')}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Metrics - Professional horizontal row */}
+                <div className="pt-6 border-t border-gray-100">
+                  <div className="grid grid-cols-3 gap-4">
+                    {project.metrics.map((metric, metricIndex) => (
+                      <div key={metricIndex} className="text-left">
+                        <div className="text-[9px] text-gray-400 font-bold uppercase tracking-widest leading-none mb-1.5">
+                          {metric.label}
+                        </div>
+                        <div className="text-blue-600 font-bold text-xs sm:text-sm truncate">
+                          {metric.value}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
